@@ -2,7 +2,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token} = require ('./config.json');
-const {createQs , parseQ } = require ('./helper')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildPresences] });
 client.commands = new Collection();
@@ -24,7 +23,6 @@ for (const folder of commandFolders) {
 		}
 	}
 }
-//https://discordjs.guide/creating-your-bot/event-handling.html#reading-event-files
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -42,7 +40,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 
 	try {
-		await command.execute(interaction,parseQ,fs,client);
+		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
 		if (interaction.replied || interaction.deferred) {

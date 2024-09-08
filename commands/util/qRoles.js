@@ -1,7 +1,4 @@
 const { SlashCommandBuilder, Collection } = require('discord.js');
-const fs = require('node:fs');
-const { parseQ } = require('../../helper')
-
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,7 +6,7 @@ module.exports = {
         .setDescription('Prunes QOTD pings. Saves admin headaches. Slices bread. (note: may not actually slice bread)')
         ,
 
-    async execute(interaction, parseeQ, fss) {
+    async execute(interaction) {
         
 //ROLE IDs
 
